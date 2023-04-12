@@ -25,6 +25,11 @@ let dbUsers = [
     }
   ]
 
+  //encrypt existing user password in dbUsers
+  for (let i = 0; i < dbUsers.length; i++) {
+    dbUsers[i].password = bcrypt.hashSync(dbUsers[i].password, saltRounds)
+  }
+  
   // login function
   function login(username, password) {
     console.log("someone try to login with", username, password)
@@ -59,7 +64,7 @@ let dbUsers = [
 
         dbUsers.push({
             username: newusername,
-            password: newpassword,
+            password: hash,
             name: newname,
             email: newemail
         })
@@ -70,10 +75,13 @@ let dbUsers = [
 
 app.use(express.json());
 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
 app.post('/login', (req, res) => {
     let data = req.body
-    res.send(
-      login(data.username, data.password)
+    res.send(login(data.username, data.password)
     )
 })
 
@@ -88,7 +96,6 @@ app.post('/register', (req, res) => {
       )
     )
 })
-
 
 
 
