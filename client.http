@@ -1,0 +1,29 @@
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "polo bon",
+    "password" : "password"
+}
+
+###
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "neymarpsg",
+    "password": "brasil",
+    "email": "user@m.com",
+    "name": "neymar"
+}
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "neymarpsg",
+    "password" : "brasil"
+}
